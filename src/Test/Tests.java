@@ -34,11 +34,14 @@ public class Tests {
 			fail("No se esperaba fallo de conexion");
 		}
 	}
-	public void testSelectAll2() {
+	@Test
+	public void testInsert() {
 		try {
-			MockUsuarioModelo usuarioModelo= new MockUsuarioModelo(true);
-			ArrayList<Usuario> usuarios=usuarioModelo.selectAll();
-			fail("Se esperaba fallo de conexion");
+			MockUsuarioModelo usuarioModelo= new MockUsuarioModelo(false);
+			Usuario usuario=usuarioModelo.select(1);
+			
+			usuarioModelo.insertar(usuario);
+			fail("Se esperaba error al insertar");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -93,17 +93,22 @@ public class MockUsuarioModelo{
 	public void delete(int id) throws Exception{
 		comprovarConexion();
 		Iterator<Usuario> i =this.listaUsuarios.iterator();
+		boolean encontrado=false;
 		while(i.hasNext()){
 			if (i.next().getId()==id){
-				i.remove();;
+				i.remove();
+				encontrado=true;
+
 			}
 		}
-
+		if(!encontrado){
+			throw new Exception("Ese usuario no existe");
+		}
 	}
 	
 	public void update(Usuario usuario) throws Exception{
 		comprovarConexion();
-
+		boolean encontrado=false;
 		Iterator<Usuario> i =this.listaUsuarios.iterator();
 		while(i.hasNext()){
 			Usuario u=i.next();
@@ -113,7 +118,12 @@ public class MockUsuarioModelo{
 				u.setEdad(usuario.getEdad());
 				u.setFecha_nac(usuario.getFecha_nac());
 				u.setNombre(usuario.getNombre());
+				encontrado=true;
 			}
+			
+		}
+		if(!encontrado){
+			throw new Exception("Ese usuario no existe");
 		}
 		
 		
@@ -121,7 +131,18 @@ public class MockUsuarioModelo{
 	
 	public void insertar(Usuario usuario) throws Exception{
 		comprovarConexion();
+		boolean noEncontrado=true;
+		Iterator<Usuario> i =this.listaUsuarios.iterator();
+		while(i.hasNext()){
+			if (i.next().getId()==usuario.getId()){
+				noEncontrado=false;
+			}
+		}
+		if(noEncontrado){
 			this.listaUsuarios.add(usuario);
+		}else{
+			throw new Exception("Ese usuario ya existe");
+		}
 		
 	}
 }
