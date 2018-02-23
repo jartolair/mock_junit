@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.junit.Test;
 
+import modelo.Operaciones;
 import modelo.Usuario;
 import vista.UsuarioVista;
 
@@ -46,6 +47,22 @@ public class Tests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testMediaEdad(){
+		try {
+			MockUsuarioModelo usuarioModelo=new MockUsuarioModelo(false);
+			Operaciones operaciones=new Operaciones();
+			double resultadoReal = operaciones.calcularEdadMedia(usuarioModelo);
+			double resultadoEsperado=19;
+			
+			assertEquals(resultadoEsperado, resultadoReal, 0.01);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -10,7 +10,6 @@ import modelo.Usuario;
 
 
 
-
 public class MockUsuarioModelo{
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
@@ -46,7 +45,7 @@ public class MockUsuarioModelo{
 		aitor.setNombre("Aitor");
 		aitor.setApellido("Tena");
 		aitor.setDni("87654321B");
-		aitor.setEdad(20);
+		aitor.setEdad(18);
 		try {
 			aitor.setFecha_nac(formatter.parse("1994/12/01"));
 		} catch (ParseException e) {
