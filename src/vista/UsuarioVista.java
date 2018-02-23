@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import Test.MockUsuarioModelo;
 import modelo.UsuarioModelo;
-import modelo.MockUsuarioModelo;
 import modelo.Usuario;
 
 public class UsuarioVista {

@@ -1,14 +1,12 @@
-package modelo;
+package Test;
 
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import modelo.Usuario;
 
 
 
@@ -21,12 +19,11 @@ public class MockUsuarioModelo{
 	
 	/**
 	 * 
-	 * @param lanzarExtepcion True: dara errores | False: Funcionara
+	 * @param lanzarExtepcion True: Dara error | False: Funcionara
 	 */
 	public MockUsuarioModelo(boolean lanzarExtepcion){
-		if (lanzarExtepcion){
-			this.lanzarExtepcion=lanzarExtepcion;
-		}
+		this.lanzarExtepcion=lanzarExtepcion;
+		
 		this.listaUsuarios=new ArrayList<>();
 
 
@@ -51,7 +48,7 @@ public class MockUsuarioModelo{
 		aitor.setDni("87654321B");
 		aitor.setEdad(20);
 		try {
-			patxi.setFecha_nac(formatter.parse("1994/12/01"));
+			aitor.setFecha_nac(formatter.parse("1994/12/01"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +56,7 @@ public class MockUsuarioModelo{
 	}
 	
 	
-	private void comprovarConexion() throws Exception{
+	private void comprobarConexion() throws Exception{
 		if (this.lanzarExtepcion){
 			throw new Exception("La conexion ha fallado");
 		}
@@ -67,15 +64,15 @@ public class MockUsuarioModelo{
 	
 	public ArrayList<Usuario> selectAll() throws Exception{
 		ArrayList<Usuario> usuarios=null;
-		comprovarConexion();
-			usuarios=this.listaUsuarios;
+		comprobarConexion();
+		usuarios=this.listaUsuarios;
 		
 		return usuarios;
 		
 	}
 	
 	public Usuario select(int id) throws Exception{
-		comprovarConexion();
+		comprobarConexion();
 		
 		Usuario usuario=null;
 		Iterator<Usuario> i =this.listaUsuarios.iterator();
@@ -91,7 +88,7 @@ public class MockUsuarioModelo{
 	}
 	
 	public void delete(int id) throws Exception{
-		comprovarConexion();
+		comprobarConexion();
 		Iterator<Usuario> i =this.listaUsuarios.iterator();
 		boolean encontrado=false;
 		while(i.hasNext()){
@@ -107,7 +104,7 @@ public class MockUsuarioModelo{
 	}
 	
 	public void update(Usuario usuario) throws Exception{
-		comprovarConexion();
+		comprobarConexion();
 		boolean encontrado=false;
 		Iterator<Usuario> i =this.listaUsuarios.iterator();
 		while(i.hasNext()){
@@ -130,7 +127,7 @@ public class MockUsuarioModelo{
 	}
 	
 	public void insertar(Usuario usuario) throws Exception{
-		comprovarConexion();
+		comprobarConexion();
 		boolean noEncontrado=true;
 		Iterator<Usuario> i =this.listaUsuarios.iterator();
 		while(i.hasNext()){
